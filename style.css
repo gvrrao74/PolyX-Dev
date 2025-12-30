@@ -1,0 +1,300 @@
+/* Hack Club Style + Dark Mode + Bottom-Left Toggle + Projects Marquee */
+
+/* COLORS */
+:root {
+  --hc-red: #ec3750;
+  --hc-blue: #338eda;
+  --hc-purple: #a633d6;
+
+  --bg-light: #f9fafb;
+  --bg-alt: #eef2ff;
+
+  --text-dark: #0f172a;
+  --text-muted: #475569;
+  --white: #ffffff;
+
+  --radius-sm: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 6px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* RESET */
+* {margin:0;padding:0;box-sizing:border-box;}
+html {scroll-behavior: smooth;}
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* DARK MODE */
+body.dark-mode { background:#0f172a; color:#f9fafb; }
+body.dark-mode .alt-section { background:#1e293b; }
+
+/* FIX: Card visibility in Dark Mode */
+body.dark-mode .card { 
+  background:#1e293b; 
+  color: #f9fafb; 
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Adds edge definition */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);   /* Deeper shadow */
+}
+
+body.dark-mode .navbar { background:#1e293b; }
+
+/* Dark Mode Nav Buttons */
+body.dark-mode .navbar nav a { color:#f9fafb; }
+body.dark-mode .navbar nav a:hover { 
+  background: rgba(255, 255, 255, 0.1); 
+  color: #fff; 
+}
+
+body.dark-mode .btn-cta { background: var(--hc-red); color:#fff; }
+
+/* Dark Mode Social Cards Fix */
+body.dark-mode .link-card { color: #f9fafb; } 
+body.dark-mode .link-card:hover { background: var(--hc-purple); color: #fff; border-color: transparent; }
+
+/* NAVBAR */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  min-height: 75px;
+}
+
+.logo { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  font-weight: 800; 
+  font-size: 1.25rem; 
+  z-index: 1001; 
+}
+
+.hc-icon { width:32px; height:32px; }
+
+/* Centered Navigation with Cipiklub Button Style */
+.navbar nav { 
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex; 
+  gap: 8px; 
+}
+
+.navbar nav a { 
+  text-decoration: none; 
+  font-weight: 600; 
+  font-size: 0.95rem;
+  color: var(--text-dark); 
+  white-space: nowrap;
+  padding: 8px 16px; 
+  border-radius: 999px; 
+  transition: all 0.25s ease;
+  background: transparent;
+}
+
+.navbar nav a:hover { 
+  background: rgba(236, 55, 80, 0.1); 
+  color: var(--hc-red); 
+}
+
+.cipiklub-logo-container { 
+  display: flex; 
+  align-items: center; 
+  z-index: 1001; 
+}
+
+.cipiklub-logo { 
+  height: 48px; 
+  object-fit: contain; 
+}
+
+/* HERO - FULL SCREEN */
+.hero-section {
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  background: linear-gradient(135deg, var(--hc-red), var(--hc-blue));
+  color: var(--white);
+  transition: background 0.3s;
+}
+.hero-section h1 { font-size: clamp(2.5rem,6vw,3.5rem); font-weight:900; margin-bottom:16px; }
+.hero-section h1 span { background: var(--white); color: var(--hc-red); padding:6px 14px; border-radius:12px; }
+.hero-section p { font-size:1.2rem; margin-bottom:28px; }
+.btn-cta { display:inline-block; padding:14px 30px; background:var(--white); color:var(--hc-red); font-weight:700; text-decoration:none; border-radius:999px; transition: transform 0.2s, box-shadow 0.2s, background 0.3s, color 0.3s; }
+.btn-cta:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.15); }
+
+/* ABOUT ME */
+.about-container { display:flex; align-items:center; gap:40px; flex-wrap:wrap; margin-top:20px; }
+.about-image { flex:1 1 250px; text-align:center; }
+.about-image .about-pic { width:100%; max-width:300px; border-radius:20px; object-fit:cover; box-shadow:0 20px 40px rgba(0,0,0,0.15); }
+.about-text { flex:2 1 400px; font-size:1.05rem; line-height:1.6; }
+
+/* SECTIONS AND CARDS */
+.section { max-width:1000px; margin:70px auto; padding:0 20px; }
+.alt-section { background: var(--bg-alt); border-radius:32px; padding:50px 20px; transition: background 0.3s; }
+.section h2 { font-size:2.1rem; font-weight:800; margin-bottom:28px; }
+
+.card { 
+  background:var(--white); 
+  padding:26px; 
+  border-radius:20px; 
+  box-shadow:0 6px 16px rgba(0,0,0,0.08); 
+  font-size:1.05rem; 
+  transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s; 
+}
+
+.card-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
+.link-card { text-decoration:none; color:var(--text-dark); font-weight:600; text-align:center; transition: transform 0.25s, background 0.25s, color 0.25s; }
+.link-card:hover { background: linear-gradient(135deg, var(--hc-red), var(--hc-purple)); color:#fff; transform:translateY(-6px); }
+
+/* PROJECTS MARQUEE */
+.projects-marquee { overflow: hidden; width: 100%; position: relative; }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-track > * { flex-shrink: 0; }
+
+.project-card {
+  flex: 0 0 auto;
+  min-width: 250px;
+  background: var(--white);
+  color: var(--text-dark);
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: transform 0.3s, background 0.3s, color 0.3s, border 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  margin-right: 20px;
+}
+.project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.project-card.coming-soon { opacity: 0.6; }
+
+/* Dark Mode Project Card Fix */
+body.dark-mode .project-card { 
+  background: #1e293b; 
+  color: #f9fafb; 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* FOOTER */
+.footer { text-align:center; padding:36px 20px; color:var(--text-muted); font-weight:600; transition: color 0.3s; }
+
+/* CIPIKLUB THEME BUTTON */
+.theme-btn {
+  position: fixed; 
+  bottom: 24px; 
+  left: 24px; 
+  width: 48px; 
+  height: 48px; 
+  border-radius: 50%;
+  background: var(--white); 
+  border: 1px solid rgba(0,0,0,0.1); 
+  box-shadow: var(--shadow-sm);
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  z-index: 2000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-btn svg { 
+  width: 22px; 
+  height: 22px; 
+  position: absolute; 
+  /* Critical: The base transform must include centering */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  transition: transform 0.5s ease, opacity 0.3s ease; 
+}
+
+/* LIGHT MODE DEFAULTS */
+.theme-btn .moon-icon { 
+  opacity: 0; 
+  /* Combined transform: centered + rotated away */
+  transform: translate(-50%, -50%) rotate(-90deg); 
+  /* Force the moon color to be dark in light mode (hidden state) */
+  stroke: var(--text-dark);
+}
+
+.theme-btn .sun-icon { 
+  opacity: 1; 
+  transform: translate(-50%, -50%) rotate(0deg); 
+  color: #ffab00; 
+}
+
+/* DARK MODE OVERRIDES */
+body.dark-mode .theme-btn { 
+  background: #1e293b; 
+  border-color: rgba(255,255,255,0.1); 
+}
+
+body.dark-mode .theme-btn .sun-icon { 
+  opacity: 0; 
+  transform: translate(-50%, -50%) rotate(90deg); 
+}
+
+body.dark-mode .theme-btn .moon-icon { 
+  opacity: 1; 
+  /* Combined transform: centered + upright */
+  transform: translate(-50%, -50%) rotate(0deg); 
+  /* Fix the outline: use stroke for SVGs */
+  stroke: #f1f5f9; 
+  color: #f1f5f9; 
+}
+
+/* Hover animation that doesn't break centering */
+.theme-btn:hover { 
+  transform: scale(1.1); 
+}
+/* SCROLL MARGIN */
+section { scroll-margin-top: 85px; }
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .navbar { 
+    flex-direction: column; 
+    gap: 12px; 
+    padding: 16px;
+    min-height: auto;
+  }
+  .navbar nav { 
+    position: static; 
+    transform: none; 
+    justify-content: center;
+    flex-wrap: wrap; 
+  }
+  .cipiklub-logo { height: 38px; }
+  .about-container { flex-direction: column; text-align:center; }
+  section { scroll-margin-top: 150px; }
+  .project-card { min-width: 200px; padding: 16px; }
+}
